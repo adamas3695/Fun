@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Understanding Cancer | حقيقة أم إشاعة؟</title>
+
+  <style>
+    :root {
+      --bg: #f6eac8;
+      --pink: #d5006d;
+      --pink-dark: #a60056;
+      --pink-soft: #f6d5df;
+      --pink-soft-2: #f9e6ec;
+      --green: #25935a;
+      --green-soft: #dff1e6;
+      --red: #cb5a6c;
+      --red-soft: #f8dbe3;
+      --ink: #5c3041;
+      --white: #fffdfb;
+      --shadow-dark: rgba(0, 0, 0, 0.25);
+      --shadow-soft: rgba(153, 79, 112, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Tahoma, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    .page {
+      max-width: 1200px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .top-curve {
+      position: absolute;
+      top: 120px;
+      left: 15%;
+      width: 70%;
+      height: 170px;
+      border: 5px solid var(--pink);
+      border-bottom: none;
+      border-radius: 100px 100px 0 0;
+      pointer-events: none;
+      opacity: 0.95;
+    }
+
+    .top-line-1,
+    .top-line-2 {
+      position: absolute;
+      height: 5px;
+      background: var(--pink);
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
+    .top-line-1 {
+      top: 128px;
+      left: 47%;
+      width: 260px;
+    }
+
+    .top-line-2 {
+      top: 164px;
+      left: 39%;
+      width: 330px;
+    }
+
+    .decor {
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+    }
+
+    .spark-1 { top: 88px; left: 4%; font-size: 80px; color: #e31777; }
+    .spark-2 { top: 112px; left: 11%; font-size: 38px; color: #f29cc2; }
+    .spark-3 { top: 70px; left: 11.5%; font-size: 26px; color: #f29cc2; }
+    .spark-4 { top: 180px; left: 27%; font-size: 34px; color: #d5006d; }
+    .spark-5 { top: 145px; left: 31%; font-size: 90px; color: #d5006d; }
+
+    .heart-left {
+      top: 300px;
+      left: 8%;
+      font-size: 160px;
+      color: #ef7fb0;
+      transform: rotate(8deg);
+      opacity: 0.95;
+    }
+
+    .pill-top {
+      top: 42px;
+      right: 4%;
+      font-size: 130px;
+      transform: rotate(18deg);
+    }
+
+    .ribbon-right {
+      right: 7%;
+      bottom: 140px;
+      font-size: 220px;
+      color: #eb74a8;
+      transform: rotate(-10deg);
+      opacity: 0.95;
+    }
+
+    .med-left {
+      left: 0%;
+      bottom: 10px;
+      font-size: 170px;
+      transform: rotate(-6deg);
+    }
+
+    .petal {
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+      color: #f8c0d2;
+      opacity: 0.95;
+      line-height: 1;
+    }
+
+    .petal.p1 { top: 415px; left: 22%; font-size: 62px; transform: rotate(-18deg); }
+    .petal.p2 { top: 560px; left: 14%; font-size: 50px; transform: rotate(16deg); }
+    .petal.p3 { top: 385px; right: 14%; font-size: 72px; transform: rotate(15deg); }
+    .petal.p4 { top: 520px; right: 8%; font-size: 84px; transform: rotate(-26deg); }
+    .petal.p5 { top: 610px; right: 20%; font-size: 96px; transform: rotate(25deg); }
+
+    .small-stars {
+      position: absolute;
+      right: 17%;
+      bottom: 145px;
+      color: #f19abd;
+      font-size: 26px;
+      line-height: 1.8;
+      text-align: center;
+      opacity: 0.8;
+    }
+
+    .hero {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding-top: 170px;
+      padding-bottom: 20px;
+    }
+
+    .understanding {
+      display: inline-block;
+      background: #f8f8fa;
+      color: var(--pink);
+      font-size: clamp(1.8rem, 4vw, 3.3rem);
+      font-weight: 900;
+      font-style: italic;
+      padding: 16px 32px 10px;
+      border-radius: 28px;
+      box-shadow: 0 8px 0 rgba(0, 0, 0, 0.12);
+      transform: rotate(-1deg);
+    }
+
+    .cancer {
+      margin-top: 14px;
+      font-size: clamp(4.2rem, 14vw, 11rem);
+      font-weight: 900;
+      color: var(--pink);
+      line-height: 0.9;
+      letter-spacing: 1px;
+      text-shadow: 10px 8px 0 rgba(0, 0, 0, 0.28);
+    }
+
+    .arabic-title {
+      margin-top: 22px;
+      font-size: clamp(2.8rem, 8vw, 5.8rem);
+      font-weight: 900;
+      color: var(--pink);
+      line-height: 1.05;
+      text-shadow: 6px 5px 0 rgba(0, 0, 0, 0.18);
+    }
+
+    .quiz-shell {
+      position: relative;
+      z-index: 3;
+      max-width: 920px;
+      margin: 36px auto 0;
+      background: rgba(255, 253, 251, 0.30);
+      border: 4px solid rgba(213, 0, 109, 0.16);
+      border-radius: 34px;
+      padding: 22px;
+      backdrop-filter: blur(2px);
+      box-shadow: 0 10px 30px var(--shadow-soft);
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-weight: 900;
+      color: var(--pink-dark);
+      font-size: clamp(1rem, 2vw, 1.35rem);
+    }
+
+    .progress {
+      margin-top: 14px;
+      margin-bottom: 22px;
+      height: 14px;
+      background: rgba(213, 0, 109, 0.14);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #ff8dc1 0%, var(--pink) 100%);
+      border-radius: 999px;
+      transition: width 0.35s ease;
+    }
+
+    .question-box {
+      background: rgba(255, 255, 255, 0.62);
+      border-radius: 32px;
+      min-height: 190px;
+      padding: 30px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        inset 0 0 0 1px rgba(213, 0, 109, 0.04),
+        0 8px 18px rgba(170, 85, 120, 0.08);
+    }
+
+    .question {
+      margin: 0;
+      text-align: center;
+      white-space: pre-line;
+      font-size: clamp(1.45rem, 3vw, 2.2rem);
+      line-height: 1.9;
+      font-weight: 900;
+      color: #000000;
+    }
+
+    .choices {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .choice {
+      border: none;
+      border-radius: 24px;
+      padding: 20px 18px;
+      font-family: inherit;
+      font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.2s ease;
+    }
+
+    .choice:hover {
+      transform: translateY(-2px);
+    }
+
+    .choice:disabled {
+      opacity: 0.88;
+      cursor: default;
+    }
+
+    .true-btn {
+      background: var(--green-soft);
+      color: var(--green);
+      box-shadow: 0 0 0 4px rgba(45, 147, 90, 0.08);
+    }
+
+    .false-btn {
+      background: var(--red-soft);
+      color: var(--red);
+      box-shadow: 0 0 0 4px rgba(203, 90, 108, 0.08);
+    }
+
+    .feedback {
+      min-height: 84px;
+      margin-top: 18px;
+      border-radius: 22px;
+      padding: 14px 18px;
+      text-align: center;
+      font-size: 1.08rem;
+      line-height: 1.9;
+      font-weight: 800;
+    }
+
+    .feedback.ok {
+      background: rgba(223, 241, 230, 0.88);
+      color: var(--green);
+    }
+
+    .feedback.bad {
+      background: rgba(248, 219, 227, 0.92);
+      color: var(--red);
+    }
+
+    .footer-row {
+      margin-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: var(--pink-dark);
+      font-weight: 900;
+    }
+
+    .restart {
+      border: none;
+      background: var(--pink);
+      color: white;
+      border-radius: 16px;
+      padding: 12px 18px;
+      font-size: 1rem;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(213, 0, 109, 0.18);
+    }
+
+    .result {
+      display: none;
+      margin-top: 22px;
+      background: rgba(255, 255, 255, 0.68);
+      border-radius: 28px;
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    .result.show {
+      display: block;
+    }
+
+    .result h2 {
+      margin: 0 0 10px;
+      color: var(--pink-dark);
+      font-size: clamp(2rem, 5vw, 3rem);
+    }
+
+    .result p {
+      margin: 0 0 16px;
+      font-size: 1.12rem;
+      line-height: 1.9;
+      font-weight: 700;
+    }
+
+    .success-star {
+        position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0.2);
+      font-size: 100px;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0;
+      animation: popStar 0.9s ease forwards;
+      filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.18));
+    }
+
+    @keyframes popStar {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.2) rotate(-15deg);
+      }
+      30% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.18) rotate(8deg);
+      }
+      70% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.45) rotate(10deg);
+      }
+    }
+
+    .sparkle-pop {
+      position: fixed;
+      z-index: 9998;
+      pointer-events: none;
+      font-size: 28px;
+      animation: sparkleFloat 0.9s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes sparkleFloat {
+      0% {
+        opacity: 0;
+        transform: translateY(0) scale(0.4);
+      }
+      30% {
+        opacity: 1;
+        transform: translateY(-18px) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-42px) scale(1.2);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .top-curve {
+        top: 105px;
+        left: 7%;
+        width: 86%;
+        height: 125px;
+      }
+
+      .top-line-1 {
+        top: 110px;
+        left: 45%;
+        width: 130px;
+      }
+
+      .top-line-2 {
+        top: 138px;
+        left: 36%;
+        width: 190px;
+      }
+
+      .hero {
+        padding-top: 120px;
+      }
+
+      .choices {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="top-curve"></div>
+    <div class="top-line-1"></div>
+    <div class="top-line-2"></div>
+
+    <div class="decor spark-1">✦</div>
+    <div class="decor spark-2">✦</div>
+    <div class="decor spark-3">✦</div>
+    <div class="decor spark-4">✦</div>
+    <div class="decor spark-5">✦</div>
+
+    <div class="decor heart-left">🎗️</div>
+    <div class="decor pill-top">💊</div>
+    <div class="decor ribbon-right">🎗️</div>
+    <div class="decor med-left">💊🐹</div>
+
+    <div class="petal p1">❀</div>
+    <div class="petal p2">❀</div>
+    <div class="petal p3">❀</div>
+    <div class="petal p4">❀</div>
+    <div class="petal p5">❀</div>
+
+    <div class="small-stars">✦ ✦ ✦<br>✦ ✦</div>
+
+    <div class="hero">
+      <div class="understanding">Understanding</div>
+      <div class="cancer">Cancer</div>
+      <div class="arabic-title">حقيقة ام إشاعة؟</div>
+    </div>
+
+    <div class="quiz-shell">
+      <div class="meta-row">
+        <div id="scoreText">الإجابات الصحيحة: 0</div>
+        <div id="progressText">السؤال 1 من 6</div>
+      </div>
+
+      <div class="progress">
+        <div id="progressFill" class="progress-fill"></div>
+      </div>
+
+      <div class="question-box">
+        <h2 id="questionText" class="question"></h2>
+      </div>
+
+      <div class="choices">
+        <button id="trueBtn" class="choice true-btn" type="button">صح</button>
+        <button id="falseBtn" class="choice false-btn" type="button">خطأ</button>
+      </div>
+
+      <div id="feedback" class="feedback"></div>
+
+      <div class="footer-row">
+        <div id="miniScore">0 / 6</div>
+        <button id="restartBtn1" class="restart" type="button">إعادة البدء</button>
+      </div>
+
+      <div id="resultSection" class="result">
+        <h2>أحسنتِ 🎉</h2>
+        <p id="finalMessage"></p>
+        <button id="restartBtn2" class="restart" type="button">إعادة المحاولة</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        text: "العلاج الكيميائي معدي\nيعتقد البعض أن المريض ممكن ينقل العلاج لغيره",
+        answer: false,
+        explanation: "خطأ. العلاج الكيميائي غير معدٍ، والمريض ما ينقل العلاج لغيره."
+      },
+      {
+        text: "لمس المريض أو الجلوس معه خطر",
+        answer: false,
+        explanation: "خطأ. العكس، الدعم الجسدي والنفسي آمن ومهم جدًا."
+      },
+      {
+        text: "كل المرضى يفقدون قدرتهم على الإنجاب دائمًا",
+        answer: false,
+        explanation: "خطأ. بعض العلاجات قد تؤثر على الخصوبة، لكن مو دائمًا، وأحيانًا يكون التأثير مؤقت."
+      },
+      {
+        text: "العلاج الكيميائي يوقف عمل الدماغ بالكامل",
+        answer: false,
+        explanation: "خطأ. ما يسمى chemobrain هو تأثير بسيط ومؤقت عند بعض المرضى، وليس فقدانًا حقيقيًا لوظائف الدماغ."
+      },
+      {
+        text: "يجب عزل المريض تمامًا عن الناس",
+        answer: false,
+        explanation: "خطأ. العزل الكامل غير ضروري، لكن يُنصح بتجنب العدوى الشديدة حسب الحالة."
+      },
+      {
+        text: "الأكل يفسد العلاج (خصوصًا السكر)",
+        answer: false,
+        explanation: "خطأ. السكر ما يغذي السرطان بشكل مباشر مثل ما يُشاع، والأكل ما يفسد العلاج بهذه الطريقة."
+      }
+    ];
+
+    let currentIndex = 0;
+    let score = 0;
+
+    const questionText = document.getElementById("questionText");
+    const feedback = document.getElementById("feedback");
+    const progressText = document.getElementById("progressText");
+    const progressFill = document.getElementById("progressFill");
+    const scoreText = document.getElementById("scoreText");
+    const miniScore = document.getElementById("miniScore");
+    const resultSection = document.getElementById("resultSection");
+    const finalMessage = document.getElementById("finalMessage");
+    const trueBtn = document.getElementById("trueBtn");
+    const falseBtn = document.getElementById("falseBtn");
+
+    function playSuccessSound() {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return;
+
+      const ctx = new AudioContextClass();
+      const notes = [
+        { freq: 740, time: 0.00, duration: 0.12 },
+        { freq: 880, time: 0.12, duration: 0.12 },
+        { freq: 1046, time: 0.24, duration: 0.18 }
+      ];
+
+      notes.forEach(function(note) {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = "triangle";
+        osc.frequency.value = note.freq;
+
+        gain.gain.setValueAtTime(0.0001, ctx.currentTime + note.time);
+        gain.gain.exponentialRampToValueAtTime(0.18, ctx.currentTime + note.time + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + note.time + note.duration);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(ctx.currentTime + note.time);
+        osc.stop(ctx.currentTime + note.time + note.duration + 0.03);
+      });
+    }
+
+    function showSuccessStar() {
+      const star = document.createElement("div");
+      star.className = "success-star";
+      star.textContent = "⭐";
+      document.body.appendChild(star);
+
+      const positions = [
+        { x: "46%", y: "44%" },
+        { x: "56%", y: "46%" },
+        { x: "43%", y: "55%" },
+        { x: "58%", y: "56%" }
+      ];
+
+      const created = [];
+      positions.forEach(function(pos, i) {
+        const s = document.createElement("div");
+        s.className = "sparkle-pop";
+        s.textContent = i % 2 === 0 ? "✦" : "✨";
+        s.style.left = pos.x;
+        s.style.top = pos.y;
+        s.style.color = i % 2 === 0 ? "#d5006d" : "#f59ac3";
+        document.body.appendChild(s);
+        created.push(s);
+      });
+
+      setTimeout(function() {
+        star.remove();
+        created.forEach(function(el) { el.remove(); });
+      }, 950);
+    }
+
+    function renderQuestion() {
+      const q = questions[currentIndex];
+      questionText.innerText = q.text;
+      feedback.textContent = "";
+      feedback.className = "feedback";
+      progressText.textContent = "السؤال " + (currentIndex + 1) + " من " + questions.length;
+      scoreText.textContent = "الإجابات الصحيحة: " + score;
+      miniScore.textContent = score + " / " + questions.length;
+      progressFill.style.width = ((currentIndex / questions.length) * 100) + "%";
+      trueBtn.disabled = false;
+      falseBtn.disabled = false;
+      resultSection.classList.remove("show");
+    }
+
+    function answer(choice) {
+      const q = questions[currentIndex];
+      if (choice === q.answer) {
+        score += 1;
+        feedback.textContent = "✅ " + q.explanation;
+        feedback.className = "feedback ok";
+
+        showSuccessStar();
+        playSuccessSound();
+
+        scoreText.textContent = "الإجابات الصحيحة: " + score;
+        miniScore.textContent = score + " / " + questions.length;
+        progressFill.style.width = (((currentIndex + 1) / questions.length) * 100) + "%";
+        trueBtn.disabled = true;
+        falseBtn.disabled = true;
+
+        setTimeout(function() {
+          currentIndex += 1;
+          if (currentIndex < questions.length) {
+            renderQuestion();
+          } else {
+            questionText.innerText = "خلصتِ كل الأسئلة";
+            feedback.textContent = "";
+            resultSection.classList.add("show");
+            finalMessage.textContent = "نتيجتك " + score + " من " + questions.length + ".";
+          }
+        }, 1800);
+
+      } else {
+        feedback.textContent = "❌ مو صحيحة، حاولي مرة ثانية";
+        feedback.className = "feedback bad";
+      }
+    }
+
+    function restart() {
+      currentIndex = 0;
+      score = 0;
+      renderQuestion();
+    }
+
+    trueBtn.addEventListener("click", function() { answer(true); });
+    falseBtn.addEventListener("click", function() { answer(false); });
+    document.getElementById("restartBtn1").addEventListener("click", restart);
+    document.getElementById("restartBtn2").addEventListener("click", restart);
+
+    renderQuestion();
+  </script>
+</body>
+</html>
